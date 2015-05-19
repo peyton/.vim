@@ -41,12 +41,19 @@ set whichwrap+=<,>,h,l,[,] " Wrap arrow keys between lines
 autocmd! bufwritepost .vimrc source ~/.vimrc
 noremap! jj <ESC>
 
+set colorcolumn=80
+
 " Pathogen
 execute pathogen#infect()
 
 " Omni completion
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
+" If you prefer the Omni-Completion tip window to close when a selection is
+" made, these lines close it on movement in insert mode or when leaving
+" insert mode
+autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 " Rope vim
 let ropevim_vim_completion=1
